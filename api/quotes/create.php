@@ -37,4 +37,3 @@
         echo json_encode(array('message' => 'Quote Not Created'));
     }
 
-?>

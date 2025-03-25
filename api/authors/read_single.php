@@ -26,4 +26,3 @@
         );
         print_r(json_encode($auth_arr));
     }
-?>

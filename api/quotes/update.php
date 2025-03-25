@@ -35,4 +35,3 @@
             array('message' => 'Quote Not Updated')
         );
     }
-?>

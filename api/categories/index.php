@@ -54,4 +54,3 @@
             echo json_encode(array('message' => 'Invalid Request Method'));
             break;
     }
-?>

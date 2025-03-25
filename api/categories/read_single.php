@@ -33,4 +33,3 @@
         // If no category found, print error message
         echo json_encode(array('message' => 'category_id Not Found'));
     }
-?>

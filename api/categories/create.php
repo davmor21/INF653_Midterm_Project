@@ -42,4 +42,3 @@ if($category->create()){
     );
 }
 
-?>

@@ -36,4 +36,3 @@
             array('message' => 'Category Not Found')
         );
     }
-?>

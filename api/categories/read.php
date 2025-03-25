@@ -44,4 +44,3 @@
             array('message' => 'No Categories Found.')
         );
     }
-?>
