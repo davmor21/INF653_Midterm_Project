@@ -9,7 +9,7 @@ Think of Docker as a tool that helps package up software and everything it needs
 ## Terminal commands:
 
 ### build image:
-    docker build --rm -t image-name
+    docker build -t image-name
 
 ### list images:
     docker image ls
