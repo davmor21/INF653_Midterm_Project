@@ -69,5 +69,64 @@
 
             return false;
         }
+        // Update Author
+        public function update() {
+            // Create query
+            $query = 'UPDATE ' . $this->table . ' SET author = :author WHERE id = :id';
+
+            // Prepare Statement
+            try {
+                $stmt = $this->conn->prepare($query);
+
+                // Clean data
+                $this->author = htmlspecialchars(strip_tags($this->author));
+                $this->id = htmlspecialchars(strip_tags($this->id));
+
+                // Bind data
+                $stmt->bindParam(':author', $this->author);
+                $stmt->bindParam(':id', $this->id);
+
+                // Execute Query
+                if ($stmt->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                
+                // Catch any errors during the execution
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        // Delete Author
+        public function delete() {
+            // Create Query
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+            // Prepare Statement
+            try {
+                $stmt = $this->conn->prepare($query);
+
+                // Clean data
+                $this->id = htmlspecialchars(strip_tags($this->id));
+
+                // Bind data
+                $stmt->bindParam(':id', $this->id);
+
+                // Execute Query
+                if ($stmt->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+
+                // Catch any errors during execution
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>

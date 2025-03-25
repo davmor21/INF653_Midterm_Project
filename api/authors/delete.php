@@ -17,9 +17,21 @@
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
-    if (empty($data->author)) {
-        echo json_encode(array('message' => 'Missing Required Parameters'));
-        exit();
+    if (!isset($data->id) || empty($data->id)) {
+        echo json_encode(array('message' => 'author_id Not Found'));
+        exit(); // Exit if the ID is missing
     }
-    
+    // Set property to delete
+    $auth->id = $data->id;
+
+    // Delete author
+    if($auth->delete()){
+        echo json_encode(
+            array('message' => 'Author Deleted')
+        );   
+    } else {
+        echo json_encode(
+            array('message' => 'Author Not Deleted')
+        );
+    }
 ?>
