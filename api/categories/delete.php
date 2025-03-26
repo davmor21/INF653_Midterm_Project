@@ -30,7 +30,7 @@
 
     // Delete category
     if($category->delete()){
-        echo json_encode(array('id deleted' => $category->id));   
+        echo json_encode(array('id' => $category->id));   
     } else {
         echo json_encode(
             array('message' => 'Category Not Found')

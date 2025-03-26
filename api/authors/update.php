@@ -19,7 +19,7 @@
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
     
-    if (!isset($data->category) || empty($data->category)) {
+    if (!isset($data->author) || empty($data->author)) {
         echo json_encode(array("message" => "Missing Required Parameters"));
         exit();
     }
