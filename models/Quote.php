@@ -61,7 +61,7 @@
 
                 // Bind parameters (if they exist)
                 foreach($params as $key => $value) {
-                    $stmt->bindParam($key, $value);
+                    $stmt->bindValue($key, $value);
                 }
                 
                 // Execute query
