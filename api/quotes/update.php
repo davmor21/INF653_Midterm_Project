@@ -7,6 +7,8 @@
 
     include_once '../../config/Database.php';
     include_once '../../models/Quote.php';
+    include_once '../../models/Author.php';
+    include_once '../../models/Category.php';
 
     // Connect to Database
     $database = new Database();
@@ -18,11 +20,16 @@
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
 
-    // Make sure parameters are there
-    if (!isset($data->quote) || !isset($data->author_id) || !isset($data->category_id)) {
-        echo json_encode(array("message" => "Missing Required Parameters"));
-        exit();
+    // Check for required parameters and make sure they are not empty
+    if (!isset($data->quote) || !isset($data->author_id) || !isset($data->category_id) || 
+        !strlen($data->quote) || !strlen($data->author_id) || !strlen($data->category_id)) {
+        echo json_encode(
+            array('message' => 'Missing Required Parameters')
+        );
+        exit(); 
     }
+    $author = new Author($db);
+    $category = new Category($db);
     
     $author_id = $data->author_id;
     $category_id = $data->category_id;

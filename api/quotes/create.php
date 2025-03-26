@@ -14,7 +14,7 @@
     $database = new Database();
     $db = $database->connect();
 
-    //Instantiate Objects
+    // Instantiate Objects
     $quote = new Quote($db);
     
     // Get raw data
