@@ -7,14 +7,16 @@
 
     include_once '../../config/Database.php';
     include_once '../../models/Quote.php';
+    include_once '../../models/Author.php';
+    include_once '../../models/Category.php';
 
     // Connect to Database
     $database = new Database();
     $db = $database->connect();
 
-    // Instantiate Quote Object
-    $category = new Quote($db);
-
+    //Instantiate Objects
+    $quote = new Quote($db);
+    
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
 
@@ -26,6 +28,9 @@
         );
         exit(); 
     }
+    $author = new Author($db);
+    $category = new Category($db);
+
     //author_id check
     if (!$author->exists($data->author_id)) {
         echo json_encode(array("message" => "author_id Not Found"));

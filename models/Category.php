@@ -155,5 +155,25 @@ class Category {
             return false;
         }
     }
+    public function exists($category_id) {
+        $query = 'SELECT id FROM ' . $this->table . '
+        WHERE id = :category_id LIMIT 1';
+
+        //Prepare query
+        $stmt = $this->conn->prepare($query);
+
+        //Bind parameter
+        $stmt->bindParam(':category_id', $category_id);
+
+        //Execute query
+        $stmt->execute();
+
+        //Check if category exists
+        if ($stmt->rowCount() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }
 ?>

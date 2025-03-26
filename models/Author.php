@@ -59,12 +59,14 @@
 
             // Clean data
             $this->author = htmlspecialchars(strip_tags($this->author));
-
-            // Bind data
+            
+            // Bind data 
             $stmt->bindParam(':author', $this->author);
 
+            
             // Execute query
             if($stmt->execute()){
+                $this->id = $this->conn->lastInsertId();
                 return true;
             }
 
@@ -131,6 +133,26 @@
                 echo "Error: " . $e->getMessage();
                 return false;
             }
+        }
+        public function exists($author_id) {
+            $query = 'SELECT id FROM ' . $this->table . '
+            WHERE id = :author_id LIMIT 1';
+    
+            //Prepare query
+            $stmt = $this->conn->prepare($query);
+    
+            //Bind parameter
+            $stmt->bindParam(':author_id', $author_id);
+    
+            //Execute query
+            $stmt->execute();
+    
+            //Check if author exists
+            if ($stmt->rowCount() > 0) {
+                return true;
+            }
+    
+            return false;
         }
     }
 ?>

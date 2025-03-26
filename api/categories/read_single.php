@@ -21,15 +21,9 @@
 
     // Check if category exists
     if ($category->category) {
-        // Create category array if the category exists
-        $cat_arr = [
-            'id' => $category->id,
-            'category' => $category->category
-        ];
-
         // Convert to JSON
-        echo json_encode($cat_arr);
+        echo json_encode(array('id' => $category->id, 'category' => $category->category));
     } else {
         // If no category found, print error message
-        echo json_encode(['message' => 'category_id Not Found', 'id' => $category->id, 'category' => $category->category]);
+        echo json_encode(array('message' => 'category_id Not Found'));
     }

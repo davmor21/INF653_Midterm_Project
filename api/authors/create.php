@@ -27,7 +27,7 @@
     // Create post
     if($auth->create()) {
         echo json_encode(
-            array('message' => 'Author Added', 'id' => $auth->id, 'author' => $auth->author)
+            array('id' => $auth->id, 'author' => $auth->author)
         );
     } else{
         echo json_encode((
