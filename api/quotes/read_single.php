@@ -32,4 +32,6 @@
 
     // Convert to JSON
     print_r(json_encode($quote_arr));
+    } else{
+        print_r(json_encode(["message" => "No quotes found"]));
     }

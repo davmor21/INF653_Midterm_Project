@@ -42,9 +42,13 @@
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Set Properties
-            $this->author = $row['author'];
-            $this->id = $row['id'];
+            if($row){
+                // Set Properties
+                $this->author = $row['author'];
+                $this->id = $row['id'];
+            } else{
+                
+            }
         }
         public function create(){
             // Create query

@@ -31,5 +31,5 @@
         echo json_encode($cat_arr);
     } else {
         // If no category found, print error message
-        echo json_encode(array('message' => 'category_id Not Found'));
+        echo json_encode(array('message' => 'category_id Not Found', 'id' => $category->id, 'category' => $category->category));
     }
