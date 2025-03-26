@@ -91,7 +91,7 @@
             authors a ON a.id = q.author_id
         LEFT JOIN categories c ON c.id = q.category_id
         WHERE
-            q.author_id = ?
+            q.id = ?
             LIMIT 1';   
 
         // Prepare statement

@@ -27,20 +27,19 @@
     if($num > 0) {
         // Quote array
         $quote_arr = array();
-        $quote_arr['data'] = array();
 
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
 
             $quote_item = array(
-                    'id' => $row['id'],
-                    'quote' => $row['quote'],
-                    'author' => $row['Author Name'],
-                    'category' => $row['Category']    
+                    'id' => $id,
+                    'quote' => $quote,
+                    'author' => $author_id,
+                    'category' => $category_id   
                 );
 
             // Push to "data"
-            array_push($quote_arr['data'], $quote_item);
+            array_push($quote_arr, $quote_item);
         } 
         // Turn to JSON and output
         echo json_encode($quote_arr);

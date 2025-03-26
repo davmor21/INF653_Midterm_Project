@@ -14,7 +14,7 @@
     $quote = new Quote($db);
 
     // Get ID
-    $quote->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $quote->id = isset($_GET['id']) ? $_GET['id'] : die(json_encode(["message" => "Missing ID parameter"]));
 
     // Get quote
     $quote->read_single();
