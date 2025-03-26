@@ -34,7 +34,7 @@ if($category->create()){
     // Get new ID and category
     $new_category_id = $category->id;
     echo json_encode(
-        array('message' => 'created category', 'id' => $new_category_id, 'category' => $category->category)
+        ['message' => 'created category', 'id' => $new_category_id, 'category' => $category->category]
     );   
 } else {
     echo json_encode(

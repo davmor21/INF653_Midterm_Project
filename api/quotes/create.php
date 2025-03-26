@@ -26,13 +26,24 @@
         );
         exit(); 
     }
+    //author_id check
+    if (!$author->exists($data->author_id)) {
+        echo json_encode(array("message" => "author_id Not Found"));
+        exit();
+    }
+
+    //category_id check
+        if (!$category->exists($data->category_id)) {
+            echo json_encode(array("message" => "category_id Not Found"));
+            exit();
+    }
     $quote->quote = $data->quote;
     $quote->author_id = $data->author_id;
     $quote->category_id = $data->category_id;
 
     // Create quote
     if ($quote->create()) {
-        echo json_encode(array('message' => 'Quote Created', 'id' => $quote->id,  'quote' => $quote->quote));
+        echo json_encode(array('message' => 'Quote Created', 'id' => $quote->id,  'quote' => $quote->quote, 'author_id' => $quote->author_id, 'category_id' => $quote->category_id));
     } else {
         echo json_encode(array('message' => 'Quote Not Created'));
     }
