@@ -19,7 +19,7 @@
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
     
-    if (!isset($data->author) || empty($data->category)) {
+    if (!isset($data->author) || empty($data->author)) {
         echo json_encode(array("message" => "Missing Required Parameters"));
         exit();
     }
@@ -31,7 +31,7 @@
     // Update author
     if($author->update()){
         echo json_encode(
-            array('message' => 'updated author', 'id' => $author->id, 'author' => $author)
+            array('id' => $author->id, 'author' => $author->author)
         );   
     } else {
         echo json_encode(
