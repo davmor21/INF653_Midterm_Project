@@ -18,6 +18,11 @@
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
 
+    // Make sure parameters are there
+    if (!isset($data->quote) || !isset($data->author_id) || !isset($data->category_id)) {
+        echo json_encode(array("message" => "Missing Required Parameters"));
+        exit();
+    }
     // Set properties/ID to update
     $quote->id = $data->id;
     $quote->quote = $data->quote;
@@ -26,12 +31,21 @@
 
     // Update quote
 
-    if($quote->update()){
+    if (!$quote->exists($quote->id)) {
+        echo json_encode(array("message" => "No Quotes Found"));
+        exit();
+    }
+    
+    //Call update method
+    if($quote->update()) {
         echo json_encode(
-            array('message' => 'Quote Updated')
-        );   
+        array("id" => $quote->id,
+              "quote" => $quote->quote,
+              "author_id" => $quote->author_id,
+              "category_id" => $quote->category_id));
+    
     } else {
         echo json_encode(
-            array('message' => 'Quote Not Updated')
-        );
-    }
+            array("message" => "Update Failed"));
+    
+        }

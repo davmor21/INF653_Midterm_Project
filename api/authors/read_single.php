@@ -22,7 +22,7 @@
     //Check if result contains data
     if ($author->author) {
 
-        echo json_encode([$author]);
+        echo json_encode([ 'id' => $author->id, 'author'=> $author->author]);
     } else {
         //If no record is found for ID
         echo json_encode(["message" => "author_id Not Found"]);
